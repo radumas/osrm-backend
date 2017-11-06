@@ -193,6 +193,8 @@ class BaseDataFacade
     virtual bool IsLeftHandDriving(const NodeID id) const = 0;
 
     virtual bool IsSegregated(const NodeID) const = 0;
+    virtual std::vector<ManeuverOverride>
+    GetOverridesThatStartAt(const NodeID edge_based_node_id) const = 0;
 };
 }
 }

@@ -890,6 +890,11 @@ class ContiguousInternalMemoryDataFacadeBase : public BaseDataFacade
     {
         return edge_based_node_data.IsSegregated(id);
     }
+
+    std::vector<ManeuverOverride> GetOverridesThatStartAt(const NodeID edge_based_node_id)
+    {
+        // TODO: Implement me
+    }
 };
 
 template <typename AlgorithmT> class ContiguousInternalMemoryDataFacade;
