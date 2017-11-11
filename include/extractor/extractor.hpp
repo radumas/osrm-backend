@@ -74,6 +74,7 @@ class Extractor
         const std::vector<TurnRestriction> &turn_restrictions,
         const std::vector<ConditionalTurnRestriction> &conditional_turn_restrictions,
         const std::unordered_set<EdgeID> &segregated_edges,
+        const std::vector<ManeuverOverride> &maneuver_overrides,
         // might have to be updated to add new lane combinations
         guidance::LaneDescriptionMap &turn_lane_map,
         // for calculating turn penalties
