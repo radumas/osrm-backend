@@ -210,22 +210,25 @@ inline std::vector<RouteStep> assembleSteps(const datafacade::BaseDataFacade &fa
         // intersections contain the classes of exiting road
         intersection.classes = facade.GetClasses(facade.GetClassData(target_node_id));
         BOOST_ASSERT(duration >= 0);
-<<<<<<< HEAD
-        steps.push_back(RouteStep {
-            step_name_id, is_segregated,
-=======
         steps.push_back(RouteStep{leg_data[leg_data.size() - 1].from_edge_based_node,
                                   step_name_id,
->>>>>>> 84f114bf2... apply maneuvers post post-processing
-                facade.GetNameForID(step_name_id).to_string(),
-                facade.GetRefForID(step_name_id).to_string(),
-                facade.GetPronunciationForID(step_name_id).to_string(),
-                facade.GetDestinationsForID(step_name_id).to_string(),
-                facade.GetExitsForID(step_name_id).to_string(), NO_ROTARY_NAME, NO_ROTARY_NAME,
-                duration / 10., distance, weight / weight_multiplier, target_mode, maneuver,
-                leg_geometry.FrontIndex(segment_index), leg_geometry.BackIndex(segment_index) + 1,
-                {intersection}, facade.IsLeftHandDriving(target_node_id)
-        });
+                                  is_segregated,
+                                  facade.GetNameForID(step_name_id).to_string(),
+                                  facade.GetRefForID(step_name_id).to_string(),
+                                  facade.GetPronunciationForID(step_name_id).to_string(),
+                                  facade.GetDestinationsForID(step_name_id).to_string(),
+                                  facade.GetExitsForID(step_name_id).to_string(),
+                                  NO_ROTARY_NAME,
+                                  NO_ROTARY_NAME,
+                                  duration / 10.,
+                                  distance,
+                                  weight / weight_multiplier,
+                                  target_mode,
+                                  maneuver,
+                                  leg_geometry.FrontIndex(segment_index),
+                                  leg_geometry.BackIndex(segment_index) + 1,
+                                  {intersection},
+                                  facade.IsLeftHandDriving(target_node_id)});
     }
     // In this case the source + target are on the same edge segment
     else
@@ -252,23 +255,25 @@ inline std::vector<RouteStep> assembleSteps(const datafacade::BaseDataFacade &fa
         BOOST_ASSERT(target_duration >= source_duration || weight == 0);
         const EdgeWeight duration = std::max(0, target_duration - source_duration);
 
-<<<<<<< HEAD
-        steps.push_back(RouteStep {
-            source_name_id, is_segregated,
-=======
         steps.push_back(RouteStep{source_node_id,
                                   source_name_id,
->>>>>>> 84f114bf2... apply maneuvers post post-processing
-                facade.GetNameForID(source_name_id).to_string(),
-                facade.GetRefForID(source_name_id).to_string(),
-                facade.GetPronunciationForID(source_name_id).to_string(),
-                facade.GetDestinationsForID(source_name_id).to_string(),
-                facade.GetExitsForID(source_name_id).to_string(), NO_ROTARY_NAME, NO_ROTARY_NAME,
-                duration / 10., leg_geometry.segment_distances[segment_index],
-                weight / weight_multiplier, source_mode, std::move(maneuver),
-                leg_geometry.FrontIndex(segment_index), leg_geometry.BackIndex(segment_index) + 1,
-                {intersection}, facade.IsLeftHandDriving(source_node_id)
-        });
+                                  is_segregated,
+                                  facade.GetNameForID(source_name_id).to_string(),
+                                  facade.GetRefForID(source_name_id).to_string(),
+                                  facade.GetPronunciationForID(source_name_id).to_string(),
+                                  facade.GetDestinationsForID(source_name_id).to_string(),
+                                  facade.GetExitsForID(source_name_id).to_string(),
+                                  NO_ROTARY_NAME,
+                                  NO_ROTARY_NAME,
+                                  duration / 10.,
+                                  leg_geometry.segment_distances[segment_index],
+                                  weight / weight_multiplier,
+                                  source_mode,
+                                  std::move(maneuver),
+                                  leg_geometry.FrontIndex(segment_index),
+                                  leg_geometry.BackIndex(segment_index) + 1,
+                                  {intersection},
+                                  facade.IsLeftHandDriving(source_node_id)});
     }
 
     BOOST_ASSERT(segment_index == number_of_segments - 1);
@@ -293,22 +298,25 @@ inline std::vector<RouteStep> assembleSteps(const datafacade::BaseDataFacade &fa
                 0};
 
     BOOST_ASSERT(!leg_geometry.locations.empty());
-<<<<<<< HEAD
-    steps.push_back(RouteStep {
-        target_name_id, facade.IsSegregated(target_node_id),
-=======
     steps.push_back(RouteStep{target_node_id,
                               target_name_id,
->>>>>>> 84f114bf2... apply maneuvers post post-processing
-            facade.GetNameForID(target_name_id).to_string(),
-            facade.GetRefForID(target_name_id).to_string(),
-            facade.GetPronunciationForID(target_name_id).to_string(),
-            facade.GetDestinationsForID(target_name_id).to_string(),
-            facade.GetExitsForID(target_name_id).to_string(), NO_ROTARY_NAME, NO_ROTARY_NAME,
-            ZERO_DURATION, ZERO_DISTANCE, ZERO_WEIGHT, target_mode, std::move(maneuver),
-            leg_geometry.locations.size() - 1, leg_geometry.locations.size(), {intersection},
-            facade.IsLeftHandDriving(target_node_id)
-    });
+                              facade.IsSegregated(target_node_id),
+                              facade.GetNameForID(target_name_id).to_string(),
+                              facade.GetRefForID(target_name_id).to_string(),
+                              facade.GetPronunciationForID(target_name_id).to_string(),
+                              facade.GetDestinationsForID(target_name_id).to_string(),
+                              facade.GetExitsForID(target_name_id).to_string(),
+                              NO_ROTARY_NAME,
+                              NO_ROTARY_NAME,
+                              ZERO_DURATION,
+                              ZERO_DISTANCE,
+                              ZERO_WEIGHT,
+                              target_mode,
+                              std::move(maneuver),
+                              leg_geometry.locations.size() - 1,
+                              leg_geometry.locations.size(),
+                              {intersection},
+                              facade.IsLeftHandDriving(target_node_id)});
 
     BOOST_ASSERT(steps.front().intersections.size() == 1);
     BOOST_ASSERT(steps.front().intersections.front().bearings.size() == 1);

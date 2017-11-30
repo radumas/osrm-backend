@@ -910,8 +910,10 @@ class ContiguousInternalMemoryDataFacadeBase : public BaseDataFacade
         std::vector<extractor::ManeuverOverride> results;
         // m_maneuver_overrides is a vector sorted by from_node, and there can be
         // several entries for a given from_node
-        auto found = std::find_first(
-            m_maneuver_overrides.begin(), m_maneuver_overrides.end(), edge_based_node_id);
+        auto found = std::find_if(
+            m_maneuver_overrides.begin(),
+            m_maneuver_overrides.end(),
+            [edge_based_node_id](const auto &m) { return m.from_node == edge_based_node_id; });
 
         if (found != m_maneuver_overrides.end())
         {
@@ -922,7 +924,7 @@ class ContiguousInternalMemoryDataFacadeBase : public BaseDataFacade
             // from_node
             while (found != m_maneuver_overrides.end() && found->from_node == edge_based_node_id)
             {
-                results.push_back(*first);
+                results.push_back(*found);
                 ++found;
             }
         }
