@@ -41,7 +41,7 @@ class NodeBasedGraphFactory
                           ScriptingEnvironment &scripting_environment,
                           std::vector<TurnRestriction> &turn_restrictions,
                           std::vector<ConditionalTurnRestriction> &conditional_turn_restrictions,
-                          std::vector<ManeuverOverride> &maneuver_overrides);
+                          std::vector<UnresolvedManeuverOverride> &maneuver_overrides);
 
     auto const &GetGraph() const { return compressed_output_graph; }
     auto const &GetBarriers() const { return barriers; }
@@ -70,7 +70,7 @@ class NodeBasedGraphFactory
     void Compress(ScriptingEnvironment &scripting_environment,
                   std::vector<TurnRestriction> &turn_restrictions,
                   std::vector<ConditionalTurnRestriction> &conditional_turn_restrictions,
-                  std::vector<ManeuverOverride> &maneuver_overrides);
+                  std::vector<UnresolvedManeuverOverride> &maneuver_overrides);
 
     // Most ways are bidirectional, making the geometry in forward and backward direction the same,
     // except for reversal. We make use of this fact by keeping only one representation of the
