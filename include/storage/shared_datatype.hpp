@@ -89,7 +89,8 @@ const constexpr char *block_id_to_name[] = {"NAME_CHAR_DATA",
                                             "MLD_GRAPH_NODE_LIST",
                                             "MLD_GRAPH_EDGE_LIST",
                                             "MLD_GRAPH_NODE_TO_OFFSET",
-                                            "MANEUVER_OVERRIDES"};
+                                            "MANEUVER_OVERRIDES",
+                                            "MANEUVER_OVERRIDE_NODE_SEQUENCES"};
 
 struct DataLayout
 {
@@ -167,6 +168,7 @@ struct DataLayout
         MLD_GRAPH_EDGE_LIST,
         MLD_GRAPH_NODE_TO_OFFSET,
         MANEUVER_OVERRIDES,
+        MANEUVER_OVERRIDE_NODE_SEQUENCES,
         NUM_BLOCKS
     };
 
