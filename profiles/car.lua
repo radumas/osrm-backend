@@ -38,8 +38,8 @@ function setup()
     cardinal_directions       = false,
 
     -- Size of the vehicle, to be limited by physical restriction of the way
-    vehicle_height = 2.5, -- in metters, 2.5m is the height of van
-    vehicle_width = 1.9, -- in metters, ways with narrow tag are considered narrower than 2.2m
+    vehicle_height = 2.5, -- in meters, 2.5m is the height of van
+    vehicle_width = 1.9, -- in meters, ways with narrow tag are considered narrower than 2.2m
 
     -- a list of suffixes to suppress in name change instructions. The suffixes also include common substrings of each other
     suffix_list = {

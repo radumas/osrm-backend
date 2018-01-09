@@ -290,7 +290,7 @@ Feature: Car - Restricted access
             | footway    | yes        |   x   |
             | pedestrian | private    |       |
             | footway    | private    |       |
-            | service    | private    |   x   |
+            | service    | private    |       |
             | cycleway   | private    |       |
             | track      | private    |       |
             | footway    | customers  |       |

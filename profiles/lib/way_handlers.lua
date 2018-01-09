@@ -230,6 +230,7 @@ function WayHandlers.access(profile,way,result,data)
       end
   end
 
+  -- blacklist access tags that aren't marked as restricted
   if profile.access_tag_blacklist[data.forward_access] and not result.forward_restricted then
     result.forward_mode = mode.inaccessible
   end
