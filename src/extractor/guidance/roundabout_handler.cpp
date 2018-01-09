@@ -481,7 +481,7 @@ Intersection RoundaboutHandler::handleRoundabouts(const RoundaboutType roundabou
                     turn.instruction = getInstructionForObvious(
                         intersection.size(),
                         via_eid,
-                        ::osrm::extractor::guidance::isThroughStreet<Intersection>(idx,
+                        ::osrm::extractor::guidance::isThroughStreet(idx,
                                                                      intersection,
                                                                      node_based_graph,
                                                                      node_data_container,

@@ -25,18 +25,7 @@ namespace extractor
 namespace guidance
 {
 
-// template <typename AlgorithmT> const char *name();
-// template <> inline const char *name<ch::Algorithm>() { return "CH"; }
-// template <> inline const char *name<mld::Algorithm>() { return "MLD"; }
-
-template <typename IntersectionT> inline bool isThroughStreet(const std::size_t index,
-                            const IntersectionT &intersection,
-                            const util::NodeBasedDynamicGraph &node_based_graph,
-                            const EdgeBasedNodeDataContainer &node_data_container,
-                            const util::NameTable &name_table,
-                            const SuffixTable &street_name_suffix_table);
-
-template <> inline bool isThroughStreet<IntersectionView>(const EdgeID from,
+inline bool isThroughStreet(const EdgeID from,
                             const IntersectionView &intersection,
                             const util::NodeBasedDynamicGraph &node_based_graph,
                             const EdgeBasedNodeDataContainer &node_data_container,
@@ -67,7 +56,7 @@ template <> inline bool isThroughStreet<IntersectionView>(const EdgeID from,
     return std::find_if(first, last, same_name) != last;
 }
 
-template <> inline bool isThroughStreet<Intersection>(const std::size_t index,
+inline bool isThroughStreet(const std::size_t index,
                             const Intersection &intersection,
                             const util::NodeBasedDynamicGraph &node_based_graph,
                             const EdgeBasedNodeDataContainer &node_data_container,
