@@ -219,7 +219,7 @@ function WayHandlers.access(profile,way,result,data)
   data.forward_access, data.backward_access =
     Tags.get_forward_backward_by_set(way,data,profile.access_tags_hierarchy)
 
-  -- only allow a subset of roads that are marked as restricted
+  -- only allow a subset of roads to be treated as restricted
   if profile.restricted_highway_whitelist[data.highway] then
       if profile.restricted_access_tag_list[data.forward_access] then
           result.forward_restricted = true

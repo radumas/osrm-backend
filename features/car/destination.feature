@@ -131,3 +131,30 @@ Feature: Car - Destination only, no passing through
             | e    | a  | acbe,acbe     |
             | d    | a  | de,acbe,acbe  |
             | c    | d  | cd,cd         |
+
+    Scenario: Car - Routing through a parking lot tagged access=destination,service
+        Given the node map
+            """
+               a----c++++b+++g----h---i
+               |    +    +   +   |
+               |    +    +   +   |
+               |    +    +  +    |
+               |    d++++e+f    /
+               z---------------y
+            """
+
+        And the ways
+            | nodes | access      | highway   |
+            | ac    |             | secondary |
+            | ghi   |             | secondary |
+            | azyhi |             | secondary |
+            | cd    | destination | service   |
+            | def   | destination | service   |
+            | cbg   | destination | service   |
+            | be    | destination | service   |
+            | gf    | destination | service   |
+
+        When I route I should get
+            | from | to | route         |
+            | a    | i  | azyhi,azyhi   |
+            | b    | f  | be,def,def    |
