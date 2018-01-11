@@ -344,13 +344,18 @@ operator()(const NodeID /*nid*/, const EdgeID source_edge_id, Intersection inter
         }
 
         // If the sliproad candidate is a through street, we cannot handle it as a sliproad.
-        if (::osrm::extractor::guidance::isThroughStreet(sliproad_edge,
+        auto index_of_sliproad = [&](const auto &road) {
+            return road.eid == sliproad_edge;
+        };
+        auto index = std::find_if(begin(target_intersection), end(target_intersection), index_of_sliproad) - begin(target_intersection);
+
+        std::cout << "ahhhhh " << index << std::endl;
+        if (::osrm::extractor::guidance::isThroughStreet(index,
                                                          target_intersection,
                                                          node_based_graph,
                                                          node_data_container,
                                                          name_table,
                                                          street_name_suffix_table))
-        // if (SliproadHandler::isThroughStreet(sliproad_edge, target_intersection))
         {
             continue;
         }
