@@ -5,6 +5,7 @@
       - FIXED #4781: Fixed overflow exceptions in percent-encoding parsing
     - Guidance:
       - CHANGED #4706: Guidance refactoring step to decouple intersection connectivity analysis and turn instructions generation [#4706](https://github.com/Project-OSRM/osrm-backend/pull/4706)
+      - CHANGED #4751: Guidance refactor to pull `isThroughStreet` check into one unified function [#4751](https://github.com/Project-OSRM/osrm-backend/issues/3491)
 
 # 5.14.3
   - Changes from 5.14.2:
