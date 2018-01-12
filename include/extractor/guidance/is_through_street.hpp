@@ -25,36 +25,7 @@ namespace extractor
 namespace guidance
 {
 
-// inline bool isThroughStreet(const EdgeID from,
-//                             const IntersectionView &intersection,
-//                             const util::NodeBasedDynamicGraph &node_based_graph,
-//                             const EdgeBasedNodeDataContainer &node_data_container,
-//                             const util::NameTable &name_table,
-//                             const SuffixTable &street_name_suffix_table)
-// {
-//     BOOST_ASSERT(from != SPECIAL_EDGEID);
-//     BOOST_ASSERT(!intersection.empty());
-
-//     const auto from_annotation_id = node_based_graph.GetEdgeData(from).annotation_data;
-//     const auto &edge_name_id = node_data_container.GetAnnotation(from_annotation_id).name_id;
-
-//     auto first = begin(intersection) + 1; // Skip UTurn road
-//     auto last = end(intersection);
-
-//     auto same_name = [&](const auto &road) {
-//         const auto annotation_id = node_based_graph.GetEdgeData(road.eid).annotation_data;
-//         const auto &road_name_id = node_data_container.GetAnnotation(annotation_id).name_id;
-
-//         return edge_name_id != EMPTY_NAMEID && //
-//                road_name_id != EMPTY_NAMEID && //
-//                !util::guidance::requiresNameAnnounced(edge_name_id,
-//                                                       road_name_id,
-//                                                       name_table,
-//                                                       street_name_suffix_table); //
-//     };
-// }
-
-template<typename IntersectionType>
+template <typename IntersectionType>
 inline bool isThroughStreet(const std::size_t index,
                             const IntersectionType &intersection,
                             const util::NodeBasedDynamicGraph &node_based_graph,
@@ -62,6 +33,11 @@ inline bool isThroughStreet(const std::size_t index,
                             const util::NameTable &name_table,
                             const SuffixTable &street_name_suffix_table)
 {
+    if (index >= intersection.size())
+    {
+        return false;
+    }
+
     const auto &data_at_index = node_data_container.GetAnnotation(
         node_based_graph.GetEdgeData(intersection[index].eid).annotation_data);
 
