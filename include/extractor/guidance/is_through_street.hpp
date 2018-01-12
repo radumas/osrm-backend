@@ -24,73 +24,39 @@ namespace extractor
 {
 namespace guidance
 {
-//sliproad_handler
-inline bool isThroughStreet(const EdgeID from,
-                            const IntersectionView &intersection,
-                            const util::NodeBasedDynamicGraph &node_based_graph,
-                            const EdgeBasedNodeDataContainer &node_data_container,
-                            const util::NameTable &name_table,
-                            const SuffixTable &street_name_suffix_table)
-{
-    BOOST_ASSERT(from != SPECIAL_EDGEID);
-    BOOST_ASSERT(!intersection.empty());
 
-    const auto from_annotation_id = node_based_graph.GetEdgeData(from).annotation_data;
-    const auto &edge_name_id = node_data_container.GetAnnotation(from_annotation_id).name_id;
+// inline bool isThroughStreet(const EdgeID from,
+//                             const IntersectionView &intersection,
+//                             const util::NodeBasedDynamicGraph &node_based_graph,
+//                             const EdgeBasedNodeDataContainer &node_data_container,
+//                             const util::NameTable &name_table,
+//                             const SuffixTable &street_name_suffix_table)
+// {
+//     BOOST_ASSERT(from != SPECIAL_EDGEID);
+//     BOOST_ASSERT(!intersection.empty());
 
-    auto first = begin(intersection) + 1; // Skip UTurn road
-    auto last = end(intersection);
+//     const auto from_annotation_id = node_based_graph.GetEdgeData(from).annotation_data;
+//     const auto &edge_name_id = node_data_container.GetAnnotation(from_annotation_id).name_id;
 
-    auto same_name = [&](const auto &road) {
-        const auto annotation_id = node_based_graph.GetEdgeData(road.eid).annotation_data;
-        const auto &road_name_id = node_data_container.GetAnnotation(annotation_id).name_id;
+//     auto first = begin(intersection) + 1; // Skip UTurn road
+//     auto last = end(intersection);
 
-        return edge_name_id != EMPTY_NAMEID && //
-               road_name_id != EMPTY_NAMEID && //
-               !util::guidance::requiresNameAnnounced(edge_name_id,
-                                                      road_name_id,
-                                                      name_table,
-                                                      street_name_suffix_table); //
-    };
+//     auto same_name = [&](const auto &road) {
+//         const auto annotation_id = node_based_graph.GetEdgeData(road.eid).annotation_data;
+//         const auto &road_name_id = node_data_container.GetAnnotation(annotation_id).name_id;
 
-    return std::find_if(first, last, same_name) != last;
-    // const auto &data_at_index = node_data_container.GetAnnotation(
-    //     node_based_graph.GetEdgeData(intersection[index].eid).annotation_data);
+//         return edge_name_id != EMPTY_NAMEID && //
+//                road_name_id != EMPTY_NAMEID && //
+//                !util::guidance::requiresNameAnnounced(edge_name_id,
+//                                                       road_name_id,
+//                                                       name_table,
+//                                                       street_name_suffix_table); //
+//     };
+// }
 
-    // if (data_at_index.name_id == EMPTY_NAMEID)
-    //     return false;
-
-    // // a through street cannot start at our own position -> index 1
-    // for (std::size_t road_index = 1; road_index < intersection.size(); ++road_index)
-    // {
-    //     if (road_index == index)
-    //         continue;
-
-    //     const auto &road = intersection[road_index];
-    //     const auto &road_data = node_data_container.GetAnnotation(
-    //         node_based_graph.GetEdgeData(road.eid).annotation_data);
-
-    //     // roads have a near straight angle (180 degree)
-    //     const bool is_nearly_straight = angularDeviation(road.angle, intersection[index].angle) >
-    //                                     (STRAIGHT_ANGLE - FUZZY_ANGLE_DIFFERENCE);
-
-    //     const bool have_same_name =
-    //         road_data.name_id != EMPTY_NAMEID &&
-    //         !util::guidance::requiresNameAnnounced(
-    //             data_at_index.name_id, road_data.name_id, name_table, street_name_suffix_table);
-
-    //     const bool have_same_category =
-    //         node_based_graph.GetEdgeData(intersection[index].eid).flags.road_classification ==
-    //         node_based_graph.GetEdgeData(road.eid).flags.road_classification;
-
-    //     if (is_nearly_straight && have_same_name && have_same_category)
-    //         return true;
-    // }
-    // return false;
-}
-//Intersection
+template<typename IntersectionType>
 inline bool isThroughStreet(const std::size_t index,
-                            const Intersection &intersection, //IntersectionView
+                            const IntersectionType &intersection,
                             const util::NodeBasedDynamicGraph &node_based_graph,
                             const EdgeBasedNodeDataContainer &node_data_container,
                             const util::NameTable &name_table,

@@ -349,8 +349,11 @@ operator()(const NodeID /*nid*/, const EdgeID source_edge_id, Intersection inter
         };
         auto index = std::find_if(begin(target_intersection), end(target_intersection), index_of_sliproad) - begin(target_intersection);
 
-        std::cout << "ahhhhh " << index << std::endl;
-        if (::osrm::extractor::guidance::isThroughStreet(index,
+        BOOST_ASSERT(find_if(begin(target_intersection), end(target_intersection), index_of_sliproad) != end(target_intersection));
+
+        // std::cout << "ahhhhh " << index << std::endl;
+
+        if (::osrm::extractor::guidance::isThroughStreet<IntersectionView>(index,
                                                          target_intersection,
                                                          node_based_graph,
                                                          node_data_container,
