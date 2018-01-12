@@ -158,3 +158,29 @@ Feature: Car - Destination only, no passing through
             | from | to | route         |
             | a    | i  | azyhi,azyhi   |
             | b    | f  | be,def,def    |
+
+    Scenario: Car - Disallow snapping to access=private,highway=service
+        Given a grid size of 20 meters
+        Given the node map
+            """
+               a---c---b
+                   :
+                   x
+                   :
+                   d
+                    \__e
+            """
+
+        And the ways
+            | nodes | access   | highway |
+            | acb   |          | primary |
+            | cx    | private  | service |
+            | xd    | private  | service |
+            | de    |          | primary |
+
+        When I route I should get
+            | from | to | route     |
+            | a    | x  | acb,xd,xd |
+            | a    | d  | acb,xd,xd |
+            | a    | e  | acb,xd,de |
+            | x    | e  | de,de     |

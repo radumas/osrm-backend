@@ -79,6 +79,11 @@ function setup()
       'destination'
     },
 
+    -- tags disallow access to in combination with highway=service
+    service_access_tag_blacklist = Set {
+        'private'
+    },
+
     restricted_access_tag_list = Set {
       'private',
       'delivery',
