@@ -359,7 +359,6 @@ operator()(const NodeID /*nid*/, const EdgeID source_edge_id, Intersection inter
                                                          name_table,
                                                          street_name_suffix_table))
         {
-            num_through_streets++;
             continue;
         }
 
