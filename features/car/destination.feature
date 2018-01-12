@@ -184,3 +184,4 @@ Feature: Car - Destination only, no passing through
             | a    | d  | acb,xd,xd |
             | a    | e  | acb,xd,de |
             | x    | e  | de,de     |
+            # do not snap to access=private,highway=service roads when routing over them is not necessary

@@ -259,7 +259,7 @@ void validate_node_layer(protozero::pbf_reader &layer_message)
             break;
         }
     }
-    BOOST_CHECK_EQUAL(number_of_nodes_found, 1807);
+    BOOST_CHECK_EQUAL(number_of_nodes_found, 1791);
 }
 
 void validate_tile(const osrm::OSRM &osrm)
