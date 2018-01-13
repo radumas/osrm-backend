@@ -827,7 +827,7 @@ void EdgeBasedGraphFactory::GenerateEdgeExpandedEdges(
 
                             /***************************/
 
-                            const auto edgetarget = m_node_based_graph.GetTarget(turn.eid);
+                            const auto edgetarget = m_node_based_graph.GetTarget(turn->eid);
 
                             // TODO: this loop is not optimized - once we have a few
                             //       overrides available, we should index this for faster
@@ -836,11 +836,11 @@ void EdgeBasedGraphFactory::GenerateEdgeExpandedEdges(
                             {
                                 for (auto &turn : override.turn_sequence)
                                 {
-                                    if (turn.from == node_along_road_entering &&
-                                        turn.via == node_at_center_of_intersection &&
-                                        turn.to == edgetarget)
+                                    if (turn.from == incoming_edge.node &&
+                                        turn.via == intersection_node && turn.to == edgetarget)
                                     {
-                                        const auto &ebn_from = nbe_to_ebn_mapping[incoming_edge];
+                                        const auto &ebn_from =
+                                            nbe_to_ebn_mapping[incoming_edge.edge];
                                         const auto &ebn_to = target_id;
                                         buffer->turn_to_ebn_map[turn] =
                                             std::make_pair(ebn_from, ebn_to);
@@ -849,16 +849,17 @@ void EdgeBasedGraphFactory::GenerateEdgeExpandedEdges(
                             }
 
                             { // scope to forget edge_with_data after
-                                const auto edge_with_data_and_condition =
-                                    generate_edge(nbe_to_ebn_mapping[incoming_edge.edge],
-                                                  target_id,
-                                                  incoming_edge.node,
-                                                  incoming_edge.edge,
-                                                  outgoing_edge.node,
-                                                  outgoing_edge.edge,
-                                                  reversed_incoming_bearing,
-                                                  *turn,
-                                                  entry_class_id);
+                                const auto edge_with_data_and_condition = generate_edge(
+                                    nbe_to_ebn_mapping[incoming_edge
+                                                           .edge], /* edge_based_node_from */
+                                    target_id,                     /* edge_based_node_to */
+                                    incoming_edge.node,            /* node_along_road_entering */
+                                    incoming_edge.edge,            /* node_based_edge_from */
+                                    outgoing_edge.node,            /* intersection_node */
+                                    outgoing_edge.edge,            /* node_based_edge_to */
+                                    reversed_incoming_bearing,     /* incoming_bearing */
+                                    *turn,                         /* turn */
+                                    entry_class_id);               /* entry_class_id */
 
                                 buffer->continuous_data.edges_list.push_back(
                                     edge_with_data_and_condition.first.edge);
