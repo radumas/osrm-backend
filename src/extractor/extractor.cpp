@@ -16,6 +16,7 @@
 #include "guidance/files.hpp"
 #include "guidance/guidance_processing.hpp"
 #include "guidance/segregated_intersection_classification.hpp"
+#include "guidance/turn_data_container.hpp"
 
 #include "storage/io.hpp"
 
@@ -874,22 +875,22 @@ void Extractor::ProcessGuidanceTurns(
         RestrictionMap node_restriction_map(node_restrictions, IndexNodeByFromAndVia());
         WayRestrictionMap way_restriction_map(conditional_turn_restrictions);
 
-        osrm::guidance::processGuidanceTurns(node_based_graph,
-                                             edge_based_node_container,
-                                             node_coordinates,
-                                             compressed_edge_container,
-                                             barrier_nodes,
-                                             node_restriction_map,
-                                             way_restriction_map,
-                                             name_table,
-                                             street_name_suffix_table,
-                                             turn_lanes_data,
-                                             lane_description_map,
-                                             lane_data_map,
-                                             turn_data_container,
-                                             bearing_class_by_node_based_node,
-                                             bearing_class_hash,
-                                             entry_class_hash);
+        osrm::guidance::annotateTurns(node_based_graph,
+                                      edge_based_node_container,
+                                      node_coordinates,
+                                      compressed_edge_container,
+                                      barrier_nodes,
+                                      node_restriction_map,
+                                      way_restriction_map,
+                                      name_table,
+                                      street_name_suffix_table,
+                                      turn_lanes_data,
+                                      lane_description_map,
+                                      lane_data_map,
+                                      turn_data_container,
+                                      bearing_class_by_node_based_node,
+                                      bearing_class_hash,
+                                      entry_class_hash);
     }
 
     util::Log() << "Writing Intersection Classification Data";

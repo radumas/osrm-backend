@@ -14,7 +14,6 @@
 #include "util/coordinate.hpp"
 #include "util/coordinate_calculation.hpp"
 #include "util/exception.hpp"
-#include "util/guidance/turn_bearing.hpp"
 #include "util/integer_range.hpp"
 #include "util/log.hpp"
 #include "util/percent.hpp"

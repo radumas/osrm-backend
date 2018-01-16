@@ -16,22 +16,22 @@ namespace osrm
 namespace guidance
 {
 
-void processGuidanceTurns(const util::NodeBasedDynamicGraph &node_based_graph,
-                          const extractor::EdgeBasedNodeDataContainer &edge_based_node_container,
-                          const std::vector<util::Coordinate> &node_coordinates,
-                          const extractor::CompressedEdgeContainer &compressed_edge_container,
-                          const std::unordered_set<NodeID> &barrier_nodes,
-                          const extractor::RestrictionMap &node_restriction_map,
-                          const extractor::WayRestrictionMap &way_restriction_map,
-                          const util::NameTable &name_table,
-                          const extractor::SuffixTable &suffix_table,
-                          const extractor::TurnLanesIndexedArray &turn_lanes_data,
-                          extractor::LaneDescriptionMap &lane_description_map,
-                          util::guidance::LaneDataIdMap &lane_data_map,
-                          guidance::TurnDataExternalContainer &turn_data_container,
-                          BearingClassesVector &bearing_class_by_node_based_node,
-                          BearingClassesMap &bearing_class_hash,
-                          EntryClassesMap &entry_class_hash)
+void annotateTurns(const util::NodeBasedDynamicGraph &node_based_graph,
+                   const extractor::EdgeBasedNodeDataContainer &edge_based_node_container,
+                   const std::vector<util::Coordinate> &node_coordinates,
+                   const extractor::CompressedEdgeContainer &compressed_edge_container,
+                   const std::unordered_set<NodeID> &barrier_nodes,
+                   const extractor::RestrictionMap &node_restriction_map,
+                   const extractor::WayRestrictionMap &way_restriction_map,
+                   const util::NameTable &name_table,
+                   const extractor::SuffixTable &suffix_table,
+                   const extractor::TurnLanesIndexedArray &turn_lanes_data,
+                   extractor::LaneDescriptionMap &lane_description_map,
+                   util::guidance::LaneDataIdMap &lane_data_map,
+                   guidance::TurnDataExternalContainer &turn_data_container,
+                   BearingClassesVector &bearing_class_by_node_based_node,
+                   BearingClassesMap &bearing_class_hash,
+                   EntryClassesMap &entry_class_hash)
 {
     util::UnbufferedLog log;
 
@@ -221,8 +221,8 @@ void processGuidanceTurns(const util::NodeBasedDynamicGraph &node_based_graph,
                             guidance::TurnData{turn->instruction,
                                                turn->lane_data_id,
                                                entry_class_id,
-                                               util::guidance::TurnBearing(intersection[0].bearing),
-                                               util::guidance::TurnBearing(turn->bearing)});
+                                               guidance::TurnBearing(intersection[0].bearing),
+                                               guidance::TurnBearing(turn->bearing)});
 
                         // when turning off a a via-way turn restriction, we need to not only
                         // handle the normal edges for the way, but also add turns for every
@@ -256,8 +256,8 @@ void processGuidanceTurns(const util::NodeBasedDynamicGraph &node_based_graph,
                                         turn->instruction,
                                         turn->lane_data_id,
                                         entry_class_id,
-                                        util::guidance::TurnBearing(intersection[0].bearing),
-                                        util::guidance::TurnBearing(turn->bearing)});
+                                        guidance::TurnBearing(intersection[0].bearing),
+                                        guidance::TurnBearing(turn->bearing)});
                                 }
                                 else
                                 {
@@ -265,8 +265,8 @@ void processGuidanceTurns(const util::NodeBasedDynamicGraph &node_based_graph,
                                         turn->instruction,
                                         turn->lane_data_id,
                                         entry_class_id,
-                                        util::guidance::TurnBearing(intersection[0].bearing),
-                                        util::guidance::TurnBearing(turn->bearing)});
+                                        guidance::TurnBearing(intersection[0].bearing),
+                                        guidance::TurnBearing(turn->bearing)});
                                 }
                             }
                         }

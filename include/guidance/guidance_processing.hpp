@@ -26,22 +26,22 @@ using BearingClassesVector = std::vector<BearingClassID>;
 using BearingClassesMap = util::ConcurrentIDMap<util::guidance::BearingClass, BearingClassID>;
 using EntryClassesMap = util::ConcurrentIDMap<util::guidance::EntryClass, EntryClassID>;
 
-void processGuidanceTurns(const util::NodeBasedDynamicGraph &node_based_graph,
-                          const extractor::EdgeBasedNodeDataContainer &edge_based_node_container,
-                          const std::vector<util::Coordinate> &node_coordinates,
-                          const extractor::CompressedEdgeContainer &compressed_edge_container,
-                          const std::unordered_set<NodeID> &barrier_nodes,
-                          const extractor::RestrictionMap &node_restriction_map,
-                          const extractor::WayRestrictionMap &way_restriction_map,
-                          const util::NameTable &name_table,
-                          const extractor::SuffixTable &suffix_table,
-                          const extractor::TurnLanesIndexedArray &turn_lanes_data,
-                          extractor::LaneDescriptionMap &lane_description_map,
-                          util::guidance::LaneDataIdMap &lane_data_map,
-                          guidance::TurnDataExternalContainer &turn_data_container,
-                          BearingClassesVector &bearing_class_by_node_based_node,
-                          BearingClassesMap &bearing_class_hash,
-                          EntryClassesMap &entry_class_hash);
+void annotateTurns(const util::NodeBasedDynamicGraph &node_based_graph,
+                   const extractor::EdgeBasedNodeDataContainer &edge_based_node_container,
+                   const std::vector<util::Coordinate> &node_coordinates,
+                   const extractor::CompressedEdgeContainer &compressed_edge_container,
+                   const std::unordered_set<NodeID> &barrier_nodes,
+                   const extractor::RestrictionMap &node_restriction_map,
+                   const extractor::WayRestrictionMap &way_restriction_map,
+                   const util::NameTable &name_table,
+                   const extractor::SuffixTable &suffix_table,
+                   const extractor::TurnLanesIndexedArray &turn_lanes_data,
+                   extractor::LaneDescriptionMap &lane_description_map,
+                   util::guidance::LaneDataIdMap &lane_data_map,
+                   guidance::TurnDataExternalContainer &turn_data_container,
+                   BearingClassesVector &bearing_class_by_node_based_node,
+                   BearingClassesMap &bearing_class_hash,
+                   EntryClassesMap &entry_class_hash);
 
 } // namespace customizer
 } // namespace osrm
